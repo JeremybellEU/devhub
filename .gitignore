@@ -29,4 +29,7 @@ hs_err_pid*
 
 # Database
 *.db
+storage/
 
+# Devhub generated CSS file
+src/main/resources/static/css/devhub.css
