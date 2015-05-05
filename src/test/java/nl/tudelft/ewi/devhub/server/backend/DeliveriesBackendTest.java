@@ -28,6 +28,7 @@ import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
@@ -41,7 +42,8 @@ public class DeliveriesBackendTest extends BackendTest {
 
 	private static final String fileName = "myFile.txt";
 
-	private static final String pathName = "my/fancy/path/";
+	private static final String pathName = Joiner.on(File.separator)
+			.join("my", "fancy", "path").concat(File.separator);
 
 	private static final String FULL_PATH_NAME = pathName + fileName;
 
@@ -199,7 +201,7 @@ public class DeliveriesBackendTest extends BackendTest {
 		this.deliveriesBackend.attach(delivery, fileName, in);
 		
 		assertEquals(1, delivery.getAttachments().size());
-		assertEquals(FULL_PATH_NAME, delivery.getAttachments().iterator().next().getFileName());
+		assertEquals(fileName, delivery.getAttachments().iterator().next().getFileName());
 	}
 	
 	@Test
